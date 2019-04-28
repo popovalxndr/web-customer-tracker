@@ -1,0 +1,7 @@
+com\popovalxndr\springhibernatedemo\service\CustomerService.class
+com\popovalxndr\springhibernatedemo\entity\Customer.class
+com\popovalxndr\springhibernatedemo\controller\CustomerController.class
+com\popovalxndr\springhibernatedemo\service\CustomerServiceImpl.class
+com\popovalxndr\springhibernatedemo\dao\CustomerDAO.class
+TestDBServlet.class
+com\popovalxndr\springhibernatedemo\dao\CustomerDAOImpl.class
