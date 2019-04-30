@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,14 +33,42 @@ public class CustomerController {
 
         model.addAttribute("customer", new Customer());
 
-        return "add-customer";
+        return "save-customer";
     }
 
-    @PostMapping("/addCustomer")
-    public String addCustomer(@ModelAttribute("customer") Customer customer) {
+    @GetMapping("/updateCustomerForm")
+    public String updateCustomerDialog(@RequestParam int customerId, Model model) {
 
-        customerService.addCustomer(customer);
+        Customer customer = customerService.getCustomer(customerId);
+
+        model.addAttribute("customer", customer);
+
+        return "save-customer";
+    }
+
+    @PostMapping("/saveCustomer")
+    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+
+        customerService.saveCustomer(customer);
 
         return "redirect:/customer/list";
+    }
+
+    @GetMapping("/deleteCustomer")
+    public String deleteCustomer(@RequestParam int customerId) {
+
+        customerService.deleteCustomer(customerId);
+
+        return "redirect:/customer/list";
+    }
+
+    @GetMapping("/search")
+    public String deleteCustomer(@RequestParam String searchStr, Model model) {
+
+        List<Customer> customers = customerService.searchCustomers(searchStr);
+
+        model.addAttribute("customers", customers);
+
+        return "list-customers";
     }
 }

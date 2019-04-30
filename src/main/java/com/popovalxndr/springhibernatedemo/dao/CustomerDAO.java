@@ -8,5 +8,11 @@ public interface CustomerDAO {
 
     public List<Customer> getCustomers();
 
-    public void addCustomer(Customer customer);
+    public Customer getCustomer(int id);
+
+    public void saveCustomer(Customer customer);
+
+    public void deleteCustomer(int customerId);
+
+    List<Customer> searchCustomers(String searchStr);
 }
